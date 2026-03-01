@@ -70,10 +70,10 @@ export const dictionary = {
 
   // FAQ
   "faq.title": { pt: "Perguntas Frequentes", en: "Frequently Asked Questions" },
-  "faq.q1": { pt: "O OpenKubbo e gratuito?", en: "Is OpenKubbo free?" },
+  "faq.q1": { pt: "O OpenKubbo e open source?", en: "Is OpenKubbo open source?" },
   "faq.a1": {
-    pt: "Sim. OpenKubbo e 100% open source e gratuito. Sem paywall, sem planos pagos.",
-    en: "Yes. OpenKubbo is 100% open source and free. No paywall, no paid plans.",
+    pt: "Sim. OpenKubbo e 100% open source.",
+    en: "Yes. OpenKubbo is 100% open source.",
   },
   "faq.q2": { pt: "Posso usar no Windows?", en: "Can I use it on Windows?" },
   "faq.a2": {
