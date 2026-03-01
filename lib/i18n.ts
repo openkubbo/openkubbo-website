@@ -105,8 +105,8 @@ export const dictionary = {
   },
   "docs.getting_started": { pt: "Primeiros Passos", en: "Getting Started" },
   "docs.getting_started.desc": {
-    pt: "Como instalar e configurar o OpenKubbo no seu ambiente.",
-    en: "How to install and set up OpenKubbo in your environment.",
+    pt: "Sera adicionado em breve.",
+    en: "Coming soon.",
   },
   "docs.step1.title": { pt: "1. Clone o repositorio", en: "1. Clone the repository" },
   "docs.step1.cmd": { pt: "git clone https://github.com/openkubbo/openkubbo.git", en: "git clone https://github.com/openkubbo/openkubbo.git" },

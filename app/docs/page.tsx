@@ -3,14 +3,7 @@
 import { useLanguage } from "@/lib/language-context"
 import { t, type DictKey } from "@/lib/i18n"
 import { Badge } from "@/components/ui/badge"
-import { KeyRound, LayoutDashboard, Terminal, Copy, Check } from "lucide-react"
-import { useState } from "react"
-
-const steps: { titleKey: DictKey; cmdKey: DictKey }[] = [
-  { titleKey: "docs.step1.title", cmdKey: "docs.step1.cmd" },
-  { titleKey: "docs.step2.title", cmdKey: "docs.step2.cmd" },
-  { titleKey: "docs.step3.title", cmdKey: "docs.step3.cmd" },
-]
+import { KeyRound, LayoutDashboard, Terminal } from "lucide-react"
 
 const sections: {
   titleKey: DictKey
@@ -33,27 +26,6 @@ const flowKeys: DictKey[] = [
   "docs.flow4",
   "docs.flow5",
 ]
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false)
-  return (
-    <button
-      onClick={() => {
-        navigator.clipboard.writeText(text)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-      }}
-      className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-      aria-label="Copy command"
-    >
-      {copied ? (
-        <Check className="h-3.5 w-3.5 text-primary" />
-      ) : (
-        <Copy className="h-3.5 w-3.5" />
-      )}
-    </button>
-  )
-}
 
 export default function DocsPage() {
   const { locale } = useLanguage()
@@ -88,30 +60,6 @@ export default function DocsPage() {
           <p className="mb-8 text-sm text-muted-foreground">
             {t("docs.getting_started.desc", locale)}
           </p>
-
-          <div className="flex flex-col gap-4">
-            {steps.map((step) => (
-              <div
-                key={step.titleKey}
-                className="overflow-hidden rounded-2xl border border-border/40 bg-card/60"
-              >
-                <div className="border-b border-border/30 bg-secondary/20 px-5 py-3">
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {t(step.titleKey, locale)}
-                  </h3>
-                </div>
-                <div className="relative px-5 py-4">
-                  <code className="block pr-10 font-mono text-sm text-primary">
-                    <span className="text-muted-foreground/50 select-none">
-                      ${" "}
-                    </span>
-                    {t(step.cmdKey, locale)}
-                  </code>
-                  <CopyButton text={t(step.cmdKey, locale)} />
-                </div>
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* How It Works */}
