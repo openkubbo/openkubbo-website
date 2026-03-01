@@ -93,8 +93,8 @@ export const dictionary = {
 
   // Footer
   "footer.oss": {
-    pt: "Open source e gratuito. Feito pela comunidade.",
-    en: "Open source and free. Built by the community.",
+    pt: "Open source. Feito pela comunidade.",
+    en: "Open source. Built by the community.",
   },
 
   // Docs page

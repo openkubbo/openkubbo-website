@@ -9,11 +9,11 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "OpenKubbo - Your Command Center for GitHub",
   description:
-    "Open source, free desktop app to manage GitHub repositories, PRs, commits, issues, CI/CD and more.",
+    "Open source desktop app to manage GitHub repositories, PRs, commits, issues, CI/CD and more.",
   openGraph: {
     title: "OpenKubbo - Your Command Center for GitHub",
     description:
-      "Open source, free desktop app to manage GitHub repositories, PRs, commits, issues, CI/CD and more.",
+      "Open source desktop app to manage GitHub repositories, PRs, commits, issues, CI/CD and more.",
     type: "website",
     url: "https://openkubbo.dev",
     siteName: "OpenKubbo",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "OpenKubbo - Your Command Center for GitHub",
     description:
-      "Open source, free desktop app to manage GitHub repositories, PRs, commits, issues, CI/CD and more.",
+      "Open source desktop app to manage GitHub repositories, PRs, commits, issues, CI/CD and more.",
   },
 }
 
