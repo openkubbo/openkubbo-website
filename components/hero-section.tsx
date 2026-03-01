@@ -6,18 +6,16 @@ import { t } from "@/lib/i18n"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Apple, ArrowRight, MonitorSmartphone } from "lucide-react"
-import { toast } from "sonner"
 
 export function HeroSection() {
   const { locale } = useLanguage()
 
   function handleDownload() {
-    toast(t("hero.coming_soon", locale), {
-      description:
-        locale === "pt"
-          ? "O download para macOS estara disponivel em breve."
-          : "The macOS download will be available soon.",
-    })
+    alert(
+      locale === "pt"
+        ? "O download para macOS estara disponivel em breve."
+        : "The macOS download will be available soon."
+    )
   }
 
   return (

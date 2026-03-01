@@ -16,9 +16,28 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handler, { passive: true })
-    return () => window.removeEventListener("scroll", handler)
+    let frame: number | null = null
+
+    const updateScrolledState = () => {
+      frame = null
+      const nextScrolled = window.scrollY > 20
+      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled))
+    }
+
+    const onScroll = () => {
+      if (frame !== null) return
+      frame = window.requestAnimationFrame(updateScrolledState)
+    }
+
+    updateScrolledState()
+    window.addEventListener("scroll", onScroll, { passive: true })
+
+    return () => {
+      if (frame !== null) {
+        window.cancelAnimationFrame(frame)
+      }
+      window.removeEventListener("scroll", onScroll)
+    }
   }, [])
 
   const links = [

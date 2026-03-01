@@ -1,9 +1,15 @@
-"use client"
-
+import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/hero-section"
-import { FeaturesSection } from "@/components/features-section"
-import { FAQSection } from "@/components/faq-section"
-import { CTASection } from "@/components/cta-section"
+
+const FeaturesSection = dynamic(() =>
+  import("@/components/features-section").then((module) => module.FeaturesSection)
+)
+const FAQSection = dynamic(() =>
+  import("@/components/faq-section").then((module) => module.FAQSection)
+)
+const CTASection = dynamic(() =>
+  import("@/components/cta-section").then((module) => module.CTASection)
+)
 
 export default function HomePage() {
   return (
