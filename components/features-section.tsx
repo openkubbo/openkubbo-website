@@ -45,6 +45,7 @@ const features: {
     titleKey: "feat.local.title",
     descKey: "feat.local.desc",
     icon: Terminal,
+    span: "sm:col-span-2",
   },
   {
     titleKey: "feat.metrics.title",
