@@ -17,6 +17,12 @@ export function HeroSection() {
         locale === "pt"
           ? "O download para macOS estara disponivel em breve."
           : "The macOS download will be available soon.",
+      style: {
+        background: "oklch(0.42 0.15 160)",
+        border: "1px solid oklch(0.52 0.15 160)",
+        color: "oklch(0.98 0 0)",
+      },
+      descriptionClassName: "!text-white/90",
     })
   }
 
