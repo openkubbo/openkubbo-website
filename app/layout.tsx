@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "OpenKubbo - Your Command Center for GitHub",
   description:
     "Open source desktop app to manage GitHub repositories, PRs, commits, issues, CI/CD and more.",
+  icons: {
+    icon: "/OpenKubbo.svg",
+    shortcut: "/OpenKubbo.svg",
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "OpenKubbo - Your Command Center for GitHub",
     description:
