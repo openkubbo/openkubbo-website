@@ -14,6 +14,7 @@ export function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [starCount, setStarCount] = useState(1)
 
   useEffect(() => {
     let frame: number | null = null
@@ -38,6 +39,39 @@ export function SiteHeader() {
       }
       window.removeEventListener("scroll", onScroll)
     }
+  }, [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function loadStars() {
+      try {
+        const response = await fetch("https://api.github.com/repos/openkubbo/openkubbo", {
+          headers: {
+            Accept: "application/vnd.github+json",
+          },
+          signal: controller.signal,
+        })
+
+        if (!response.ok) return
+
+        const data: unknown = await response.json()
+        if (
+          typeof data === "object" &&
+          data !== null &&
+          "stargazers_count" in data &&
+          typeof data.stargazers_count === "number"
+        ) {
+          setStarCount(data.stargazers_count)
+        }
+      } catch {
+        // Keep fallback value when request fails.
+      }
+    }
+
+    loadStars()
+
+    return () => controller.abort()
   }, [])
 
   const links = [
@@ -98,8 +132,17 @@ export function SiteHeader() {
             rel="noopener noreferrer"
             className="hidden items-center gap-1.5 rounded-lg border border-border/50 bg-secondary/50 px-2.5 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-border hover:text-foreground sm:flex"
           >
-            <Star className="h-3 w-3" />
-            <span>Star on GitHub</span>
+            <Star className="h-3 w-3 fill-current text-chart-4" />
+            <span>{starCount.toLocaleString(locale === "pt" ? "pt-BR" : "en-US")}</span>
+            <span>
+              {locale === "pt"
+                ? starCount === 1
+                  ? "Estrela no GitHub"
+                  : "Estrelas no GitHub"
+                : starCount === 1
+                  ? "Star on GitHub"
+                  : "Stars on GitHub"}
+            </span>
           </a>
 
           <Button
