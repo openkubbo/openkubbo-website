@@ -5,7 +5,7 @@ import { useLanguage } from "@/lib/language-context"
 import { t } from "@/lib/i18n"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Apple, ArrowRight, MonitorSmartphone } from "lucide-react"
+import { ArrowRight, MonitorSmartphone } from "lucide-react"
 import { toast } from "sonner"
 
 export function HeroSection() {
@@ -78,7 +78,7 @@ export function HeroSection() {
               className="group relative gap-2 overflow-hidden rounded-xl bg-primary px-8 text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-              <Apple className="h-5 w-5" />
+              <img src="/apple-line.svg" alt="" aria-hidden="true" className="h-5 w-5" />
               {t("hero.download_macos", locale)}
             </Button>
             <Button
