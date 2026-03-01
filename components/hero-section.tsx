@@ -49,18 +49,18 @@ export function HeroSection() {
           <h1 className="max-w-4xl text-balance text-4xl font-bold tracking-tight text-foreground md:text-6xl lg:text-7xl">
             {locale === "pt" ? (
               <>
-                Seu painel de comando
+                Uma forma simples de gerenciar
                 <br />
                 <span className="bg-gradient-to-r from-primary via-primary to-chart-2 bg-clip-text text-transparent">
-                  para o GitHub.
+                  seus repositorios e acelerar entregas.
                 </span>
               </>
             ) : (
               <>
-                Your command center
+                A simple way to manage
                 <br />
                 <span className="bg-gradient-to-r from-primary via-primary to-chart-2 bg-clip-text text-transparent">
-                  for GitHub.
+                  your repositories and accelerate delivery.
                 </span>
               </>
             )}
