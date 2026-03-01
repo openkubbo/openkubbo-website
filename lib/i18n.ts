@@ -8,7 +8,7 @@ export const dictionary = {
   "nav.github": { pt: "GitHub", en: "GitHub" },
 
   // Hero
-  "hero.badge": { pt: "Open Source & Gratuito", en: "Open Source & Free" },
+  "hero.badge": { pt: "Open Source", en: "Open Source" },
   "hero.title": {
     pt: "Seu painel de comando para o GitHub.",
     en: "Your command center for GitHub.",
