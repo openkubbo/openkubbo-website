@@ -24,9 +24,9 @@ const roadmapItems: {
   { labelKey: "road.worktrees", status: "available", category: "roadmap.cat.core" },
   // Advanced
   { labelKey: "road.multiagent", status: "beta", category: "roadmap.cat.advanced" },
-  { labelKey: "road.apikeys", status: "planned", category: "roadmap.cat.advanced" },
-  { labelKey: "road.providers", status: "planned", category: "roadmap.cat.advanced" },
   // Platform
+  { labelKey: "road.apikeys", status: "planned", category: "roadmap.cat.platform" },
+  { labelKey: "road.providers", status: "planned", category: "roadmap.cat.platform" },
   { labelKey: "road.macos", status: "planned", category: "roadmap.cat.platform" },
   { labelKey: "road.windows", status: "planned", category: "roadmap.cat.platform" },
 ]
