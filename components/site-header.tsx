@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useLanguage } from "@/lib/language-context"
 import { t } from "@/lib/i18n"
@@ -94,9 +95,16 @@ export function SiteHeader() {
           href="/"
           className="flex items-center gap-2.5 font-mono text-sm font-bold tracking-tight text-foreground"
         >
-          <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground text-xs font-black">
-            K
-            <span className="absolute -inset-px rounded-lg bg-primary/20 blur-sm" />
+          <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-lg bg-primary">
+            <Image
+              src="/OpenKubbo.svg"
+              alt="OpenKubbo logo"
+              width={16}
+              height={16}
+              className="h-4 w-4"
+              priority
+            />
+            <span className="absolute -inset-px -z-10 rounded-lg bg-primary/30 blur-sm" />
           </span>
           <span className="hidden sm:inline">OpenKubbo</span>
         </Link>
