@@ -160,9 +160,9 @@ export const dictionary = {
   "status.available": { pt: "Disponivel", en: "Available" },
   "status.beta": { pt: "Beta", en: "Beta" },
   "status.planned": { pt: "Planejado", en: "Planned" },
-  "roadmap.cat.core": { pt: "Core", en: "Core" },
+  "roadmap.cat.core": { pt: "Pronto", en: "Ready" },
   "roadmap.cat.advanced": { pt: "Esta vindo", en: "Is coming" },
-  "roadmap.cat.platform": { pt: "Plataforma", en: "Platform" },
+  "roadmap.cat.platform": { pt: "Planejado", en: "Planned" },
 
   // Roadmap items
   "road.oauth": { pt: "GitHub OAuth Device Flow", en: "GitHub OAuth Device Flow" },
