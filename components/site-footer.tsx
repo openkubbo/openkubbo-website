@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useLanguage } from "@/lib/language-context"
 import { t } from "@/lib/i18n"
 import { Github } from "lucide-react"
@@ -21,8 +22,14 @@ export function SiteFooter() {
               href="/"
               className="flex items-center gap-2.5 font-mono text-sm font-bold text-foreground"
             >
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground text-xs font-black">
-                K
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-primary">
+                <Image
+                  src="/OpenKubbo.svg"
+                  alt="OpenKubbo logo"
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
               </span>
               OpenKubbo
             </Link>
