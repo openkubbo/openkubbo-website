@@ -25,6 +25,7 @@ const roadmapItems: {
   // Advanced
   { labelKey: "road.multiagent", status: "beta", category: "roadmap.cat.advanced" },
   { labelKey: "road.apikeys", status: "planned", category: "roadmap.cat.advanced" },
+  { labelKey: "road.providers", status: "planned", category: "roadmap.cat.advanced" },
   // Platform
   { labelKey: "road.macos", status: "planned", category: "roadmap.cat.platform" },
   { labelKey: "road.windows", status: "planned", category: "roadmap.cat.platform" },

@@ -161,7 +161,7 @@ export const dictionary = {
   "status.beta": { pt: "Beta", en: "Beta" },
   "status.planned": { pt: "Planejado", en: "Planned" },
   "roadmap.cat.core": { pt: "Core", en: "Core" },
-  "roadmap.cat.advanced": { pt: "Avancado", en: "Advanced" },
+  "roadmap.cat.advanced": { pt: "Esta vindo", en: "Is coming" },
   "roadmap.cat.platform": { pt: "Plataforma", en: "Platform" },
 
   // Roadmap items
@@ -174,8 +174,18 @@ export const dictionary = {
   "road.discussions": { pt: "Discussions", en: "Discussions" },
   "road.local": { pt: "Acoes Locais (clone, terminal, finder)", en: "Local Actions (clone, terminal, finder)" },
   "road.worktrees": { pt: "Checkout & Worktrees", en: "Checkout & Worktrees" },
-  "road.multiagent": { pt: "Sistema Multi-Agent", en: "Multi-Agent System" },
-  "road.apikeys": { pt: "API Keys & Codex", en: "API Keys & Codex" },
+  "road.multiagent": {
+    pt: "Multi-agent em desenvolvimento",
+    en: "Multi-agent in development",
+  },
+  "road.apikeys": {
+    pt: "API Keys (Codex, Claude, Gemini etc.) em desenvolvimento",
+    en: "API Keys (Codex, Claude, Gemini etc.) in development",
+  },
+  "road.providers": {
+    pt: "Integracao com outros provedores (Bitbucket, GitLab, Azure DevOps...)",
+    en: "Integration with other providers (Bitbucket, GitLab, Azure DevOps...)",
+  },
   "road.macos": { pt: "Download macOS", en: "macOS Download" },
   "road.windows": { pt: "Suporte Windows", en: "Windows Support" },
 } as const
