@@ -120,12 +120,12 @@ export function SiteHeader() {
               href={link.href}
               className={`relative rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors ${
                 pathname === link.href
-                  ? "text-foreground"
+                  ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {pathname === link.href && (
-                <span className="absolute inset-0 rounded-lg bg-secondary" />
+                <span className="absolute inset-0 rounded-lg border border-primary/30 bg-primary/15" />
               )}
               <span className="relative">{link.label}</span>
             </Link>
@@ -188,7 +188,7 @@ export function SiteHeader() {
                     onClick={() => setOpen(false)}
                     className={`rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                       pathname === link.href
-                        ? "bg-secondary text-foreground"
+                        ? "border border-primary/30 bg-primary/15 text-primary"
                         : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
                     }`}
                   >
