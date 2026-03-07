@@ -6,25 +6,9 @@ import { t } from "@/lib/i18n"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, MonitorSmartphone } from "lucide-react"
-import { toast } from "sonner"
 
 export function HeroSection() {
   const { locale } = useLanguage()
-
-  function handleDownload() {
-    toast(t("hero.coming_soon", locale), {
-      description:
-        locale === "pt"
-          ? "O download para macOS estara disponivel em breve."
-          : "The macOS download will be available soon.",
-      style: {
-        background: "oklch(0.42 0.15 160)",
-        border: "1px solid oklch(0.52 0.15 160)",
-        color: "oklch(0.98 0 0)",
-      },
-      descriptionClassName: "!text-white/90",
-    })
-  }
 
   return (
     <section className="noise-bg relative overflow-hidden">
@@ -74,12 +58,14 @@ export function HeroSection() {
           <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
             <Button
               size="lg"
-              onClick={handleDownload}
+              asChild
               className="group relative gap-2 overflow-hidden rounded-xl bg-primary px-8 text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-              <img src="/apple-line.svg" alt="" aria-hidden="true" className="h-5 w-5" />
-              {t("hero.download_macos", locale)}
+              <a href="/OpenKubbo.zip" download>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+                <img src="/apple-line.svg" alt="" aria-hidden="true" className="h-5 w-5" />
+                {t("hero.download_macos", locale)}
+              </a>
             </Button>
             <Button
               variant="outline"
