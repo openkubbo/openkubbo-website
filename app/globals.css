@@ -187,29 +187,47 @@
 }
 
 @keyframes taskInsert {
-  0%, 16% { opacity: 0; transform: translateY(18px); }
-  28%, 100% { opacity: 1; transform: translateY(0); }
+  0%, 26% { opacity: 0; transform: translateY(18px) scale(0.98); }
+  38%, 100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-@keyframes taskDrag {
-  0%, 28% { transform: translateY(0); }
-  42% { transform: translateY(44px); }
-  56%, 100% { transform: translateY(0); }
+@keyframes taskSecondInsert {
+  0%, 40% { opacity: 0; transform: translateY(18px) scale(0.98); }
+  52%, 100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes taskDone {
-  0%, 42% { opacity: 1; transform: scale(1); filter: saturate(1); }
-  54% { opacity: 1; transform: scale(0.97); filter: saturate(0.7); }
-  70%, 100% { opacity: 0.45; transform: scale(0.97); filter: saturate(0.6); }
+  0%, 50% { opacity: 0; transform: scale(0.95); filter: saturate(0.75); }
+  60% { opacity: 1; transform: scale(1); filter: saturate(1); }
+  100% { opacity: 1; transform: scale(1); filter: saturate(1); }
 }
 
-@keyframes toastRise {
-  0%, 56% { opacity: 0; transform: translateY(16px); }
-  66%, 100% { opacity: 1; transform: translateY(0); }
+@keyframes taskStrike {
+  0%, 58% { opacity: 0; text-decoration-color: transparent; }
+  68%, 100% { opacity: 1; text-decoration-color: rgba(255,255,255,0.5); }
+}
+
+@keyframes taskEmptyFade {
+  0%, 24% { opacity: 1; }
+  34%, 100% { opacity: 0; }
+}
+
+@keyframes taskFooterOut {
+  0%, 40% { opacity: 1; transform: translateY(0); }
+  52%, 100% { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes taskFooterIn {
+  0%, 48% { opacity: 0; transform: translateY(8px); }
+  60%, 100% { opacity: 1; transform: translateY(0); }
 }
 
 .demo-shell[data-active="true"] {
   animation: demoGlow 9s ease-in-out infinite;
+}
+
+.demo-shell-static[data-active="true"] {
+  animation: none;
 }
 
 .demo-window,
@@ -228,7 +246,11 @@
 .ci-demo-success,
 .ci-demo-bar,
 .task-demo-row,
-.task-demo-toast {
+.task-demo-empty,
+.task-demo-check,
+.task-demo-done-label,
+.task-demo-footer-empty,
+.task-demo-footer-filled {
   animation-duration: 9s;
   animation-timing-function: ease;
   animation-iteration-count: infinite;
@@ -250,7 +272,11 @@
 .demo-shell[data-active="true"] .ci-demo-success,
 .demo-shell[data-active="true"] .ci-demo-bar,
 .demo-shell[data-active="true"] .task-demo-row,
-.demo-shell[data-active="true"] .task-demo-toast,
+.demo-shell[data-active="true"] .task-demo-empty,
+.demo-shell[data-active="true"] .task-demo-check,
+.demo-shell[data-active="true"] .task-demo-done-label,
+.demo-shell[data-active="true"] .task-demo-footer-empty,
+.demo-shell[data-active="true"] .task-demo-footer-filled,
 .repo-demo-panel,
 .repo-demo-row,
 .repo-demo-action,
@@ -266,7 +292,11 @@
 .ci-demo-success,
 .ci-demo-bar,
 .task-demo-row,
-.task-demo-toast {
+.task-demo-empty,
+.task-demo-check,
+.task-demo-done-label,
+.task-demo-footer-empty,
+.task-demo-footer-filled {
   animation-play-state: running;
 }
 
@@ -356,21 +386,41 @@
   animation-name: taskInsert;
 }
 
-.task-demo-drag {
-  animation-name: taskDrag;
+.task-demo-row-first {
+  animation-name: taskInsert;
 }
 
-.task-demo-done {
+.task-demo-row-second {
+  animation-name: taskSecondInsert;
+}
+
+.task-demo-check {
   animation-name: taskDone;
 }
 
-.task-demo-done span:last-child {
+.task-demo-done-label {
   text-decoration: line-through;
   text-decoration-thickness: 1px;
+  animation-name: taskStrike;
 }
 
-.task-demo-toast {
-  animation-name: toastRise;
+.task-demo-empty {
+  border-radius: 20px;
+  animation-name: taskEmptyFade;
+}
+
+.task-demo-footer-empty {
+  animation-name: taskFooterOut;
+}
+
+.task-demo-footer-filled {
+  opacity: 0;
+  animation-name: taskFooterIn;
+}
+
+.task-demo-done-label {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -394,7 +444,11 @@
   .ci-demo-success,
   .ci-demo-bar,
   .task-demo-row,
-  .task-demo-toast {
+  .task-demo-empty,
+  .task-demo-check,
+  .task-demo-done-label,
+  .task-demo-footer-empty,
+  .task-demo-footer-filled {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;

@@ -6,18 +6,20 @@ import {
   Activity,
   ArrowUpRight,
   ChevronRight,
+  Copy,
   Folder,
   FolderTree,
   GitBranch,
   GitPullRequest,
   Globe,
+  Grip,
+  Pencil,
   Pin,
   Plus,
   RefreshCw,
   Settings,
   Terminal,
   Trash2,
-  Undo2,
   X,
 } from "lucide-react"
 
@@ -46,9 +48,9 @@ function useDemoActive() {
 }
 
 type DemoShellProps = {
-  eyebrow: string
-  title: string
-  description: string
+  eyebrow?: string
+  title?: string
+  description?: string
   className?: string
   children: ReactNode
 }
@@ -60,23 +62,28 @@ function DemoShell({ eyebrow, title, description, className = "", children }: De
     <div
       ref={ref}
       data-active={isActive}
-      className={`demo-shell group relative overflow-hidden rounded-[28px] border border-border/50 bg-[linear-gradient(180deg,oklch(0.16_0.008_250/.95),oklch(0.12_0.008_250/.98))] p-4 shadow-[0_24px_80px_rgba(0,0,0,.22)] ${className}`}
+      className={`demo-shell group relative ${className}`}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,oklch(0.72_0.19_160/.16),transparent_40%),radial-gradient(circle_at_bottom_right,oklch(0.6_0.12_185/.12),transparent_35%)] opacity-70" />
-      <div className="relative mb-4 flex items-start justify-between gap-4">
-        <div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary/75">
-            {eyebrow}
-          </p>
-          <h3 className="mt-2 text-lg font-semibold text-foreground">{title}</h3>
-          <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-            {description}
-          </p>
+      {(eyebrow || title || description) && (
+        <div className="relative mb-4 flex items-start justify-between gap-4">
+          <div>
+            {eyebrow ? (
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary/75">
+                {eyebrow}
+              </p>
+            ) : null}
+            {title ? <h3 className="mt-2 text-lg font-semibold text-foreground">{title}</h3> : null}
+            {description ? (
+              <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
+                {description}
+              </p>
+            ) : null}
+          </div>
+          <div className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-primary">
+            Live loop
+          </div>
         </div>
-        <div className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-primary">
-          Live loop
-        </div>
-      </div>
+      )}
       <div className="relative">{children}</div>
     </div>
   )
@@ -314,117 +321,21 @@ export function HeroProductDemo({ locale }: { locale: "pt" | "en" }) {
 
 export function FeatureFlowDemos({ locale }: { locale: "pt" | "en" }) {
   return (
-    <div className="grid gap-4 lg:grid-cols-3">
-      <DemoShell
-        eyebrow={locale === "pt" ? "Repositorios" : "Repositories"}
-        title={locale === "pt" ? "Selecao compacta, expansao lateral" : "Compact selection, lateral expansion"}
-        description={
-          locale === "pt"
-            ? "O card selecionado puxa o detalhe para dentro da tela, depois PRs, CI, metricas e acoes entram em cascade."
-            : "The selected card pulls a detail workspace into view, then PRs, CI, metrics, and actions cascade in."
-        }
-      >
-        <div className="rounded-[24px] border border-white/6 bg-black/20 p-3">
-          <div className="grid gap-3 md:grid-cols-[152px_1px_minmax(0,1fr)]">
-            <div>
-              <div className="mb-2 rounded-[18px] border border-white/8 bg-white/[0.03] p-2">
-                <div className="grid grid-cols-4 gap-1">
-                  {Array.from({ length: 20 }).map((_, index) => (
-                    <div
-                      key={index}
-                      className="repo-demo-heat aspect-square rounded-[3px] bg-primary/12"
-                      style={{ animationDelay: `${index * 50}ms` }}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="space-y-2">
-                {["openkubbo/openkubbo", "openkubbo/openkubbo-website", "tarik/open-tasks"].map((item, index) => (
-                  <div key={item} className={`repo-demo-row rounded-2xl border px-3 py-3 text-sm ${index === 1 ? "border-primary/20 bg-primary/18 text-white" : "border-white/6 bg-white/[0.03] text-white/65"}`} style={{ animationDelay: `${index * 100}ms` }}>
-                    <div className="truncate font-medium">{item}</div>
-                    <div className="mt-2 flex items-center justify-between text-[11px] text-white/45">
-                      <span>main</span>
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="repo-demo-divider hidden w-px bg-white/8 md:block" />
-            <div className="repo-demo-detail rounded-[20px] border border-white/6 bg-white/[0.03] p-3">
-              <div className="repo-demo-block grid gap-2">
-                {["Open in Terminal", "Switch Worktree", "Pull Requests", "CI Runs"].map((label, index) => (
-                  <div key={label} className="flex items-center justify-between rounded-2xl border border-white/6 bg-white/[0.03] p-3 text-sm text-white" style={{ animationDelay: `${400 + index * 80}ms` }}>
-                    <span>{label}</span>
-                    <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] px-1.5 text-[10px] text-white/70">
-                      {index < 2 ? ">" : "0"}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </DemoShell>
-
-      <DemoShell
-        eyebrow="PR / CI"
-        title={locale === "pt" ? "Checks vivos, nao estaticos" : "Checks that move, not screenshots"}
-        description={
-          locale === "pt"
-            ? "O status sai de pending para success, com pulse curto nos checks ainda em andamento e resolucao objetiva."
-            : "Status moves from pending to success, with a short pulse on active checks and an objective resolve state."
-        }
-      >
-        <div className="rounded-[24px] border border-white/6 bg-black/20 p-3">
-          <div className="space-y-2">
-            {[
-              { name: "Build", delay: "0ms" },
-              { name: "Unit tests", delay: "220ms" },
-              { name: "Preview deploy", delay: "440ms" },
-            ].map((item) => (
-              <div key={item.name} className="rounded-[20px] border border-white/6 bg-white/[0.03] p-3">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-medium text-white">{item.name}</p>
-                    <p className="mt-1 text-xs text-white/45">github-actions</p>
-                  </div>
-                  <div className="ci-demo-status" style={{ animationDelay: item.delay }}>
-                    <span className="ci-demo-pending rounded-full border border-amber-400/20 bg-amber-400/10 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-amber-300">
-                      pending
-                    </span>
-                    <span className="ci-demo-success rounded-full border border-primary/20 bg-primary/10 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-primary">
-                      success
-                    </span>
-                  </div>
-                </div>
-                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/8">
-                  <div className="ci-demo-bar h-full rounded-full bg-primary" style={{ animationDelay: item.delay }} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </DemoShell>
-
-      <DemoShell
-        eyebrow="Tasks"
-        title={locale === "pt" ? "Rapidez utilitaria com undo" : "Utility speed with undo"}
-        description={
-          locale === "pt"
-            ? "Nova task entra rapido, reorder reposiciona o contexto, completa com compressao leve e traz undo no rodape."
-            : "A new task enters fast, reorder repositions context, completion compresses lightly, and undo rises from the bottom."
-        }
-      >
-        <div className="rounded-[24px] border border-white/6 bg-black/20 p-3">
+    <div className="mx-auto max-w-[372px]">
+      <DemoShell className="demo-shell-static">
+        <div className="task-demo-panel rounded-[24px] border border-white/6 bg-white/[0.03] p-3">
           <div className="mb-3 flex items-center justify-between px-1">
             <h4 className="text-[18px] font-semibold text-white">Kubbo Task</h4>
             <div className="flex items-center gap-2">
-              {[Settings, Pin, Plus, X].map((Icon, index) => (
+              {[Settings, Pin, Copy, X].map((Icon, index) => (
                 <div
                   key={index}
                   className={`flex h-8 w-8 items-center justify-center rounded-full border ${
-                    index === 1 ? "border-primary/30 bg-primary text-black" : "border-white/10 bg-white/[0.06] text-white/75"
+                    index === 1
+                      ? "border-primary/30 bg-primary text-black"
+                      : index === 2
+                        ? "border-primary/20 bg-white/[0.06] text-primary"
+                        : "border-white/10 bg-white/[0.06] text-white/75"
                   }`}
                 >
                   <Icon className="h-3.5 w-3.5" />
@@ -434,43 +345,57 @@ export function FeatureFlowDemos({ locale }: { locale: "pt" | "en" }) {
           </div>
           <div className="mb-4 flex items-center justify-between rounded-[18px] border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/50">
             <span>{locale === "pt" ? "New simple task..." : "New simple task..."}</span>
-            <Plus className="h-4 w-4 text-white/25" />
+            <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/8 bg-white/[0.02]">
+              <Plus className="h-4 w-4 text-white/25" />
+            </span>
           </div>
-          <div className="space-y-2">
-            {[
-              { label: locale === "pt" ? "Publicar landing com demos" : "Ship landing with demos", kind: "insert" },
-              { label: locale === "pt" ? "Reordenar backlog de CI" : "Reorder CI backlog", kind: "drag" },
-              { label: locale === "pt" ? "Fechar task de docs" : "Close docs task", kind: "done" },
-            ].map((item) => (
-              <div key={item.label} className={`task-demo-row task-demo-${item.kind} flex items-center gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-3`}>
-                <div className="pt-1 text-white/25">
-                  <FolderTree className="h-3.5 w-3.5" />
-                </div>
-                <div className={`flex h-5 w-5 items-center justify-center rounded-full border ${item.kind === "done" ? "border-primary bg-primary/15 text-primary" : "border-white/20 text-transparent"}`}>
+          <div className="relative min-h-[255px]">
+            <div className="task-demo-empty absolute inset-0" />
+            <div className="space-y-3">
+              <div className="task-demo-row task-demo-row-first flex items-start gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-4">
+                <Grip className="mt-1 h-3.5 w-3.5 text-white/25" />
+                <div className="flex h-5 w-5 items-center justify-center rounded-full border border-white/25 text-transparent">
                   ✓
                 </div>
-                <span className="flex-1 text-sm font-semibold text-white/80">{item.label}</span>
+                <span className="flex-1 pt-0.5 text-[13px] font-semibold text-white/90">
+                  Implement test from Repo
+                </span>
                 <div className="flex flex-col gap-1.5">
                   <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
-                    <GitPullRequest className="h-3 w-3" />
+                    <Pencil className="h-3 w-3" />
                   </div>
                   <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
                     <Trash2 className="h-3 w-3" />
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-          <div className="mt-8 h-24" />
-          <div className="border-t border-white/8 pt-3">
-            <div className="flex items-center justify-between text-sm font-semibold text-white/70">
-              <span>1 pending</span>
-              <span>50% completed</span>
+
+              <div className="task-demo-row task-demo-row-second flex items-start gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-4">
+                <Grip className="mt-1 h-3.5 w-3.5 text-white/18" />
+                <div className="task-demo-check flex h-5 w-5 items-center justify-center rounded-full border border-primary bg-primary/15 text-primary">
+                  ✓
+                </div>
+                <span className="task-demo-done-label flex-1 pt-0.5 text-[13px] font-semibold text-white/55">
+                  Implement test from Kubbo Task
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Pencil className="h-3 w-3" />
+                  </div>
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Trash2 className="h-3 w-3" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="task-demo-toast mt-3 inline-flex items-center gap-2 rounded-xl border border-white/8 bg-white/[0.05] px-3 py-2 text-xs text-white/60">
-            <Undo2 className="h-3.5 w-3.5 text-primary" />
-            {locale === "pt" ? "Undo disponivel por alguns segundos" : "Undo available for a few seconds"}
+          <div className="mt-3 border-t border-white/8 pt-3">
+            <div className="relative flex items-center justify-between text-sm font-semibold">
+              <span className="task-demo-footer-empty text-white/70">0 pending</span>
+              <span className="task-demo-footer-empty text-white/70">0% completed</span>
+              <span className="task-demo-footer-filled absolute left-0 text-white/70">1 pending</span>
+              <span className="task-demo-footer-filled absolute right-0 text-white/70">50% completed</span>
+            </div>
           </div>
         </div>
       </DemoShell>
