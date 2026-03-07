@@ -3,6 +3,7 @@
 
 @source '../app/**/*.{ts,tsx}';
 @source '../components/{hero-section,features-section,faq-section,cta-section,site-header,site-footer}.tsx';
+@source '../components/product-story-demo.tsx';
 @source '../components/ui/{accordion,badge,button,sheet}.tsx';
 
 @custom-variant dark (&:is(.dark *));
@@ -112,6 +113,293 @@
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes demoPanelEnter {
+  0%, 8% { opacity: 0; transform: translateY(24px) scale(0.98); }
+  16%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes demoGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(66, 255, 173, 0); }
+  50% { box-shadow: 0 0 0 1px rgba(66, 255, 173, 0.14), 0 0 40px rgba(66, 255, 173, 0.08); }
+}
+
+@keyframes detailReveal {
+  0%, 18% { opacity: 0; transform: translateX(-16px); clip-path: inset(0 100% 0 0 round 24px); }
+  28%, 100% { opacity: 1; transform: translateX(0); clip-path: inset(0 0 0 0 round 24px); }
+}
+
+@keyframes dividerReveal {
+  0%, 18% { opacity: 0; transform: scaleY(0.4); }
+  26%, 100% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes cascadeUp {
+  0%, 26% { opacity: 0; transform: translateY(16px); }
+  36%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heatPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.88); }
+  40% { opacity: 0.9; transform: scaleY(1); }
+}
+
+@keyframes terminalRise {
+  0%, 44% { opacity: 0; transform: translateY(26px); }
+  54%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes worktreeEcho {
+  0%, 54% { opacity: 0; transform: translateX(-18px) scale(0.96); }
+  66%, 100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes branchSwap {
+  0%, 36% { opacity: 0.5; transform: translateY(0); }
+  44% { opacity: 0; transform: translateY(-8px); }
+  52%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes metricFill {
+  0%, 48% { transform: scaleX(0); transform-origin: left; }
+  66%, 100% { transform: scaleX(1); transform-origin: left; }
+}
+
+@keyframes pendingPulse {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes ciResolvePending {
+  0%, 44% { opacity: 1; transform: translateY(0); }
+  55%, 100% { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes ciResolveSuccess {
+  0%, 50% { opacity: 0; transform: translateY(8px); }
+  62%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ciBarFill {
+  0%, 36% { transform: scaleX(0.16); transform-origin: left; }
+  60%, 100% { transform: scaleX(1); transform-origin: left; }
+}
+
+@keyframes taskInsert {
+  0%, 16% { opacity: 0; transform: translateY(18px); }
+  28%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes taskDrag {
+  0%, 28% { transform: translateY(0); }
+  42% { transform: translateY(44px); }
+  56%, 100% { transform: translateY(0); }
+}
+
+@keyframes taskDone {
+  0%, 42% { opacity: 1; transform: scale(1); filter: saturate(1); }
+  54% { opacity: 1; transform: scale(0.97); filter: saturate(0.7); }
+  70%, 100% { opacity: 0.45; transform: scale(0.97); filter: saturate(0.6); }
+}
+
+@keyframes toastRise {
+  0%, 56% { opacity: 0; transform: translateY(16px); }
+  66%, 100% { opacity: 1; transform: translateY(0); }
+}
+
+.demo-shell[data-active="true"] {
+  animation: demoGlow 9s ease-in-out infinite;
+}
+
+.demo-window,
+.repo-demo-panel,
+.repo-demo-row,
+.repo-demo-action,
+.repo-demo-divider,
+.repo-demo-detail,
+.repo-demo-block,
+.repo-terminal,
+.repo-worktree,
+.repo-branch-badge,
+.repo-metric-bar,
+.repo-demo-heat,
+.ci-demo-pending,
+.ci-demo-success,
+.ci-demo-bar,
+.task-demo-row,
+.task-demo-toast {
+  animation-duration: 9s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-play-state: paused;
+}
+
+.demo-shell[data-active="true"] .repo-demo-panel,
+.demo-shell[data-active="true"] .repo-demo-row,
+.demo-shell[data-active="true"] .repo-demo-action,
+.demo-shell[data-active="true"] .repo-demo-divider,
+.demo-shell[data-active="true"] .repo-demo-detail,
+.demo-shell[data-active="true"] .repo-demo-block,
+.demo-shell[data-active="true"] .repo-terminal,
+.demo-shell[data-active="true"] .repo-worktree,
+.demo-shell[data-active="true"] .repo-branch-badge,
+.demo-shell[data-active="true"] .repo-metric-bar,
+.demo-shell[data-active="true"] .repo-demo-heat,
+.demo-shell[data-active="true"] .ci-demo-pending,
+.demo-shell[data-active="true"] .ci-demo-success,
+.demo-shell[data-active="true"] .ci-demo-bar,
+.demo-shell[data-active="true"] .task-demo-row,
+.demo-shell[data-active="true"] .task-demo-toast,
+.repo-demo-panel,
+.repo-demo-row,
+.repo-demo-action,
+.repo-demo-divider,
+.repo-demo-detail,
+.repo-demo-block,
+.repo-terminal,
+.repo-worktree,
+.repo-branch-badge,
+.repo-metric-bar,
+.repo-demo-heat,
+.ci-demo-pending,
+.ci-demo-success,
+.ci-demo-bar,
+.task-demo-row,
+.task-demo-toast {
+  animation-play-state: running;
+}
+
+.repo-demo-panel {
+  animation-name: demoPanelEnter;
+}
+
+.repo-demo-row,
+.repo-demo-action,
+.repo-demo-block {
+  animation-name: cascadeUp;
+}
+
+.repo-demo-divider {
+  transform-origin: center;
+  animation-name: dividerReveal;
+}
+
+.repo-demo-detail {
+  animation-name: detailReveal;
+}
+
+.repo-demo-heat {
+  animation-name: heatPulse;
+}
+
+.repo-terminal {
+  animation-name: terminalRise;
+}
+
+.repo-worktree {
+  animation-name: worktreeEcho;
+}
+
+.repo-branch-badge {
+  animation-name: branchSwap;
+}
+
+.repo-metric-bar {
+  transform-origin: left;
+  animation-name: metricFill;
+}
+
+.repo-status-dot {
+  display: inline-flex;
+  height: 0.65rem;
+  width: 0.65rem;
+  border-radius: 9999px;
+}
+
+.repo-status-dot.is-success {
+  background: oklch(0.72 0.19 160);
+}
+
+.repo-status-dot.is-pending {
+  background: oklch(0.78 0.16 84);
+  animation: pendingPulse 1.4s ease-in-out infinite;
+}
+
+.ci-demo-status {
+  position: relative;
+  min-width: 84px;
+  height: 24px;
+}
+
+.ci-demo-pending,
+.ci-demo-success {
+  position: absolute;
+  inset: 0 auto auto 0;
+  white-space: nowrap;
+}
+
+.ci-demo-pending {
+  animation-name: ciResolvePending;
+}
+
+.ci-demo-success {
+  animation-name: ciResolveSuccess;
+}
+
+.ci-demo-bar {
+  transform-origin: left;
+  animation-name: ciBarFill;
+}
+
+.task-demo-insert {
+  animation-name: taskInsert;
+}
+
+.task-demo-drag {
+  animation-name: taskDrag;
+}
+
+.task-demo-done {
+  animation-name: taskDone;
+}
+
+.task-demo-done span:last-child {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.task-demo-toast {
+  animation-name: toastRise;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-shell[data-active="true"] {
+    animation: none;
+  }
+
+  .repo-demo-panel,
+  .repo-demo-row,
+  .repo-demo-action,
+  .repo-demo-divider,
+  .repo-demo-detail,
+  .repo-demo-block,
+  .repo-terminal,
+  .repo-worktree,
+  .repo-branch-badge,
+  .repo-metric-bar,
+  .repo-demo-heat,
+  .repo-status-dot.is-pending,
+  .ci-demo-pending,
+  .ci-demo-success,
+  .ci-demo-bar,
+  .task-demo-row,
+  .task-demo-toast {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
 }
 
 /* Noise texture overlay */

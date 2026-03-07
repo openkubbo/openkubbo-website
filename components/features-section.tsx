@@ -3,6 +3,7 @@
 import { useLanguage } from "@/lib/language-context"
 import { t, type DictKey } from "@/lib/i18n"
 import { Badge } from "@/components/ui/badge"
+import { FeatureFlowDemos, LocalActionsRibbon } from "@/components/product-story-demo"
 import {
   KeyRound,
   LayoutDashboard,
@@ -74,6 +75,14 @@ export function FeaturesSection() {
           <p className="mx-auto mt-4 max-w-lg text-base text-muted-foreground">
             {t("features.subtitle", locale)}
           </p>
+        </div>
+
+        <div className="mb-4">
+          <FeatureFlowDemos locale={locale} />
+        </div>
+
+        <div className="mb-8">
+          <LocalActionsRibbon locale={locale} />
         </div>
 
         {/* Bento grid */}

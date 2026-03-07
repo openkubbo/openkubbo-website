@@ -6,6 +6,7 @@ import { t } from "@/lib/i18n"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, MonitorSmartphone } from "lucide-react"
+import { HeroProductDemo } from "@/components/product-story-demo"
 
 export function HeroSection() {
   const { locale } = useLanguage()
@@ -85,7 +86,7 @@ export function HeroSection() {
             <span>{t("hero.windows_soon", locale)}</span>
           </div>
         </div>
-
+        <HeroProductDemo locale={locale} />
       </div>
     </section>
   )
