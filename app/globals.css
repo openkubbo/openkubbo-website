@@ -193,18 +193,17 @@
 
 @keyframes taskSecondInsert {
   0%, 30% { opacity: 0; transform: translateY(18px) scale(0.98); }
-  42%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+  30.01%, 100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes taskDone {
-  0%, 40% { opacity: 0; transform: scale(0.95); filter: saturate(0.75); }
-  50% { opacity: 1; transform: scale(1); filter: saturate(1); }
-  100% { opacity: 1; transform: scale(1); filter: saturate(1); }
+  0%, 30% { opacity: 0; transform: scale(0.95); filter: saturate(0.75); }
+  30.01%, 100% { opacity: 1; transform: scale(1); filter: saturate(1); }
 }
 
 @keyframes taskStrike {
-  0%, 48% { opacity: 0; text-decoration-color: transparent; }
-  58%, 100% { opacity: 1; text-decoration-color: rgba(255,255,255,0.5); }
+  0%, 30% { opacity: 0; text-decoration-color: transparent; }
+  30.01%, 100% { opacity: 1; text-decoration-color: rgba(255,255,255,0.5); }
 }
 
 @keyframes taskEmptyFade {
@@ -229,8 +228,16 @@
 }
 
 @keyframes taskPanelReveal {
-  0%, 60% { opacity: 0; transform: translateX(-24px) scale(0.98); }
-  70%, 100% { opacity: 1; transform: translateX(0) scale(1); }
+  0%, 70% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+  }
+  70.01%, 100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-24px) scale(0.98);
+  }
 }
 
 .demo-shell[data-active="true"] {
@@ -408,16 +415,22 @@
 }
 
 .task-demo-row-second {
+  animation-duration: 10s;
+  animation-timing-function: linear;
   animation-name: taskSecondInsert;
 }
 
 .task-demo-check {
+  animation-duration: 10s;
+  animation-timing-function: linear;
   animation-name: taskDone;
 }
 
 .task-demo-done-label {
   text-decoration: line-through;
   text-decoration-thickness: 1px;
+  animation-duration: 10s;
+  animation-timing-function: linear;
   animation-name: taskStrike;
 }
 
@@ -451,7 +464,7 @@
 }
 
 .task-secondary-panel-auto {
-  animation-name: taskPanelReveal;
+  animation: taskPanelReveal 10s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
