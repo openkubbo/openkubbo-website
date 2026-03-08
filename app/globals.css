@@ -222,6 +222,17 @@
   60%, 100% { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes taskDuplicatePress {
+  0%, 56% { transform: scale(1); background: rgba(255,255,255,0.06); }
+  60% { transform: scale(0.9); background: rgba(43,216,127,0.18); }
+  66%, 100% { transform: scale(1); background: rgba(255,255,255,0.06); }
+}
+
+@keyframes taskPanelReveal {
+  0%, 60% { opacity: 0; transform: translateX(-24px) scale(0.98); }
+  70%, 100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
 .demo-shell[data-active="true"] {
   animation: demoGlow 9s ease-in-out infinite;
 }
@@ -250,7 +261,9 @@
 .task-demo-check,
 .task-demo-done-label,
 .task-demo-footer-empty,
-.task-demo-footer-filled {
+.task-demo-footer-filled,
+.task-duplicate-trigger,
+.task-secondary-panel-auto {
   animation-duration: 9s;
   animation-timing-function: ease;
   animation-iteration-count: infinite;
@@ -277,6 +290,8 @@
 .demo-shell[data-active="true"] .task-demo-done-label,
 .demo-shell[data-active="true"] .task-demo-footer-empty,
 .demo-shell[data-active="true"] .task-demo-footer-filled,
+.demo-shell[data-active="true"] .task-duplicate-trigger,
+.demo-shell[data-active="true"] + .task-secondary-panel .task-secondary-panel-auto,
 .repo-demo-panel,
 .repo-demo-row,
 .repo-demo-action,
@@ -296,7 +311,9 @@
 .task-demo-check,
 .task-demo-done-label,
 .task-demo-footer-empty,
-.task-demo-footer-filled {
+.task-demo-footer-filled,
+.task-duplicate-trigger,
+.task-secondary-panel-auto {
   animation-play-state: running;
 }
 
@@ -427,13 +444,14 @@
   opacity: 0;
   transform: translateX(-24px) scale(0.98);
   pointer-events: none;
-  transition: opacity 220ms ease, transform 220ms ease;
 }
 
-.task-secondary-panel.is-visible {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-  pointer-events: auto;
+.task-duplicate-trigger {
+  animation-name: taskDuplicatePress;
+}
+
+.task-secondary-panel-auto {
+  animation-name: taskPanelReveal;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -461,16 +479,16 @@
   .task-demo-check,
   .task-demo-done-label,
   .task-demo-footer-empty,
-  .task-demo-footer-filled {
+  .task-demo-footer-filled,
+  .task-duplicate-trigger,
+  .task-secondary-panel-auto {
     animation: none !important;
     transform: none !important;
     opacity: 1 !important;
     clip-path: none !important;
   }
 
-  .task-secondary-panel,
-  .task-secondary-panel.is-visible {
-    transition: none !important;
+  .task-secondary-panel {
     transform: none !important;
   }
 }

@@ -117,11 +117,9 @@ function contributionCellStyle(level: number, index: number) {
 function TaskPanelContent({
   locale,
   variant = "primary",
-  onDuplicate,
 }: {
   locale: "pt" | "en"
   variant?: "primary" | "secondary"
-  onDuplicate?: () => void
 }) {
   const isPrimary = variant === "primary"
 
@@ -136,19 +134,15 @@ function TaskPanelContent({
           <div className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/30 bg-primary text-black">
             <Pin className="h-3.5 w-3.5" />
           </div>
-          <button
-            type="button"
-            onClick={onDuplicate}
-            className={`flex h-8 w-8 items-center justify-center rounded-full border transition-colors ${
+          <div
+            className={`task-duplicate-trigger flex h-8 w-8 items-center justify-center rounded-full border ${
               isPrimary
-                ? "border-primary/20 bg-white/[0.06] text-primary hover:bg-white/[0.1]"
+                ? "border-primary/20 bg-white/[0.06] text-primary"
                 : "border-white/10 bg-white/[0.06] text-white/40"
             }`}
-            disabled={!isPrimary}
-            aria-label="Open parallel task panel"
           >
             <Copy className="h-3.5 w-3.5" />
-          </button>
+          </div>
           <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-white/75">
             <X className="h-3.5 w-3.5" />
           </div>
@@ -458,14 +452,12 @@ export function HeroProductDemo({ locale }: { locale: "pt" | "en" }) {
 }
 
 export function FeatureFlowDemos({ locale }: { locale: "pt" | "en" }) {
-  const [isSecondaryVisible, setIsSecondaryVisible] = useState(false)
-
   return (
     <div className="mx-auto flex max-w-[860px] items-start justify-center gap-4">
       <DemoShell className="demo-shell-static w-[420px] shrink-0">
-        <TaskPanelContent locale={locale} onDuplicate={() => setIsSecondaryVisible((value) => !value)} />
+        <TaskPanelContent locale={locale} />
       </DemoShell>
-      <div className={`task-secondary-panel w-[420px] shrink-0 ${isSecondaryVisible ? "is-visible" : ""}`}>
+      <div className="task-secondary-panel task-secondary-panel-auto w-[420px] shrink-0">
         <TaskPanelContent locale={locale} variant="secondary" />
       </div>
     </div>
