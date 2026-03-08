@@ -192,19 +192,19 @@
 }
 
 @keyframes taskSecondInsert {
-  0%, 40% { opacity: 0; transform: translateY(18px) scale(0.98); }
-  52%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+  0%, 30% { opacity: 0; transform: translateY(18px) scale(0.98); }
+  42%, 100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes taskDone {
-  0%, 50% { opacity: 0; transform: scale(0.95); filter: saturate(0.75); }
-  60% { opacity: 1; transform: scale(1); filter: saturate(1); }
+  0%, 40% { opacity: 0; transform: scale(0.95); filter: saturate(0.75); }
+  50% { opacity: 1; transform: scale(1); filter: saturate(1); }
   100% { opacity: 1; transform: scale(1); filter: saturate(1); }
 }
 
 @keyframes taskStrike {
-  0%, 58% { opacity: 0; text-decoration-color: transparent; }
-  68%, 100% { opacity: 1; text-decoration-color: rgba(255,255,255,0.5); }
+  0%, 48% { opacity: 0; text-decoration-color: transparent; }
+  58%, 100% { opacity: 1; text-decoration-color: rgba(255,255,255,0.5); }
 }
 
 @keyframes taskEmptyFade {
