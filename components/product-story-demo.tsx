@@ -321,7 +321,7 @@ export function HeroProductDemo({ locale }: { locale: "pt" | "en" }) {
 
 export function FeatureFlowDemos({ locale }: { locale: "pt" | "en" }) {
   return (
-    <div className="mx-auto max-w-[372px]">
+    <div className="mx-auto max-w-[420px]">
       <DemoShell className="demo-shell-static">
         <div className="task-demo-panel rounded-[24px] border border-white/6 bg-white/[0.03] p-3">
           <div className="mb-3 flex items-center justify-between px-1">
