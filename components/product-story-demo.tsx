@@ -114,6 +114,144 @@ function contributionCellStyle(level: number, index: number) {
   }
 }
 
+function TaskPanelContent({
+  locale,
+  variant = "primary",
+  onDuplicate,
+}: {
+  locale: "pt" | "en"
+  variant?: "primary" | "secondary"
+  onDuplicate?: () => void
+}) {
+  const isPrimary = variant === "primary"
+
+  return (
+    <div className="task-demo-panel rounded-[24px] border border-white/6 bg-white/[0.03] p-3">
+      <div className="mb-3 flex items-center justify-between px-1">
+        <h4 className="text-[18px] font-semibold text-white">Kubbo Task</h4>
+        <div className="flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-white/75">
+            <Settings className="h-3.5 w-3.5" />
+          </div>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/30 bg-primary text-black">
+            <Pin className="h-3.5 w-3.5" />
+          </div>
+          <button
+            type="button"
+            onClick={onDuplicate}
+            className={`flex h-8 w-8 items-center justify-center rounded-full border transition-colors ${
+              isPrimary
+                ? "border-primary/20 bg-white/[0.06] text-primary hover:bg-white/[0.1]"
+                : "border-white/10 bg-white/[0.06] text-white/40"
+            }`}
+            disabled={!isPrimary}
+            aria-label="Open parallel task panel"
+          >
+            <Copy className="h-3.5 w-3.5" />
+          </button>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-white/75">
+            <X className="h-3.5 w-3.5" />
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-4 flex items-center justify-between rounded-[18px] border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/50">
+        <span>{locale === "pt" ? "New simple task..." : "New simple task..."}</span>
+        <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/8 bg-white/[0.02]">
+          <Plus className="h-4 w-4 text-white/25" />
+        </span>
+      </div>
+
+      {isPrimary ? (
+        <>
+          <div className="relative min-h-[255px]">
+            <div className="task-demo-empty absolute inset-0" />
+            <div className="space-y-3">
+              <div className="task-demo-row task-demo-row-first flex items-start gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-4">
+                <Grip className="mt-1 h-3.5 w-3.5 text-white/25" />
+                <div className="flex h-5 w-5 items-center justify-center rounded-full border border-white/25 text-transparent">
+                  ✓
+                </div>
+                <span className="flex-1 pt-0.5 text-[13px] font-semibold text-white/90">
+                  Implement test from Repo
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Pencil className="h-3 w-3" />
+                  </div>
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Trash2 className="h-3 w-3" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="task-demo-row task-demo-row-second flex items-start gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-4">
+                <Grip className="mt-1 h-3.5 w-3.5 text-white/18" />
+                <div className="task-demo-check flex h-5 w-5 items-center justify-center rounded-full border border-primary bg-primary/15 text-primary">
+                  ✓
+                </div>
+                <span className="task-demo-done-label flex-1 pt-0.5 text-[13px] font-semibold text-white/55">
+                  Implement test from Kubbo Task
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Pencil className="h-3 w-3" />
+                  </div>
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Trash2 className="h-3 w-3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 border-t border-white/8 pt-3">
+            <div className="relative flex items-center justify-between text-sm font-semibold">
+              <span className="task-demo-footer-empty text-white/70">0 pending</span>
+              <span className="task-demo-footer-empty text-white/70">0% completed</span>
+              <span className="task-demo-footer-filled absolute left-0 text-white/70">1 pending</span>
+              <span className="task-demo-footer-filled absolute right-0 text-white/70">50% completed</span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="min-h-[255px] space-y-3">
+            {[
+              { label: "Plan release notes", done: false },
+              { label: "Review preview deploy", done: false },
+              { label: "Archive completed tasks", done: true },
+            ].map((task) => (
+              <div key={task.label} className="flex items-start gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-4">
+                <Grip className="mt-1 h-3.5 w-3.5 text-white/18" />
+                <div className={`flex h-5 w-5 items-center justify-center rounded-full border ${task.done ? "border-primary bg-primary/15 text-primary" : "border-white/25 text-transparent"}`}>
+                  ✓
+                </div>
+                <span className={`flex-1 pt-0.5 text-[13px] font-semibold ${task.done ? "text-white/55 line-through" : "text-white/88"}`}>
+                  {task.label}
+                </span>
+                <div className="flex flex-col gap-1.5">
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Pencil className="h-3 w-3" />
+                  </div>
+                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
+                    <Trash2 className="h-3 w-3" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-3 border-t border-white/8 pt-3">
+            <div className="flex items-center justify-between text-sm font-semibold text-white/70">
+              <span>2 pending</span>
+              <span>33% completed</span>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
 function RepoHeroPanel() {
   return (
     <div className="demo-window repo-demo-panel mx-auto max-w-5xl rounded-[32px] border border-white/12 bg-[linear-gradient(180deg,rgba(18,20,24,.98),rgba(10,11,15,.99))] p-4 shadow-[0_40px_120px_rgba(0,0,0,.35)]">
@@ -320,85 +458,16 @@ export function HeroProductDemo({ locale }: { locale: "pt" | "en" }) {
 }
 
 export function FeatureFlowDemos({ locale }: { locale: "pt" | "en" }) {
-  return (
-    <div className="mx-auto max-w-[420px]">
-      <DemoShell className="demo-shell-static">
-        <div className="task-demo-panel rounded-[24px] border border-white/6 bg-white/[0.03] p-3">
-          <div className="mb-3 flex items-center justify-between px-1">
-            <h4 className="text-[18px] font-semibold text-white">Kubbo Task</h4>
-            <div className="flex items-center gap-2">
-              {[Settings, Pin, Copy, X].map((Icon, index) => (
-                <div
-                  key={index}
-                  className={`flex h-8 w-8 items-center justify-center rounded-full border ${
-                    index === 1
-                      ? "border-primary/30 bg-primary text-black"
-                      : index === 2
-                        ? "border-primary/20 bg-white/[0.06] text-primary"
-                        : "border-white/10 bg-white/[0.06] text-white/75"
-                  }`}
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="mb-4 flex items-center justify-between rounded-[18px] border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/50">
-            <span>{locale === "pt" ? "New simple task..." : "New simple task..."}</span>
-            <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/8 bg-white/[0.02]">
-              <Plus className="h-4 w-4 text-white/25" />
-            </span>
-          </div>
-          <div className="relative min-h-[255px]">
-            <div className="task-demo-empty absolute inset-0" />
-            <div className="space-y-3">
-              <div className="task-demo-row task-demo-row-first flex items-start gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-4">
-                <Grip className="mt-1 h-3.5 w-3.5 text-white/25" />
-                <div className="flex h-5 w-5 items-center justify-center rounded-full border border-white/25 text-transparent">
-                  ✓
-                </div>
-                <span className="flex-1 pt-0.5 text-[13px] font-semibold text-white/90">
-                  Implement test from Repo
-                </span>
-                <div className="flex flex-col gap-1.5">
-                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
-                    <Pencil className="h-3 w-3" />
-                  </div>
-                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
-                    <Trash2 className="h-3 w-3" />
-                  </div>
-                </div>
-              </div>
+  const [isSecondaryVisible, setIsSecondaryVisible] = useState(false)
 
-              <div className="task-demo-row task-demo-row-second flex items-start gap-3 rounded-[18px] border border-white/6 bg-white/[0.03] px-3 py-4">
-                <Grip className="mt-1 h-3.5 w-3.5 text-white/18" />
-                <div className="task-demo-check flex h-5 w-5 items-center justify-center rounded-full border border-primary bg-primary/15 text-primary">
-                  ✓
-                </div>
-                <span className="task-demo-done-label flex-1 pt-0.5 text-[13px] font-semibold text-white/55">
-                  Implement test from Kubbo Task
-                </span>
-                <div className="flex flex-col gap-1.5">
-                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
-                    <Pencil className="h-3 w-3" />
-                  </div>
-                  <div className="rounded-[10px] border border-white/10 bg-white/[0.04] p-1.5 text-white/60">
-                    <Trash2 className="h-3 w-3" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="mt-3 border-t border-white/8 pt-3">
-            <div className="relative flex items-center justify-between text-sm font-semibold">
-              <span className="task-demo-footer-empty text-white/70">0 pending</span>
-              <span className="task-demo-footer-empty text-white/70">0% completed</span>
-              <span className="task-demo-footer-filled absolute left-0 text-white/70">1 pending</span>
-              <span className="task-demo-footer-filled absolute right-0 text-white/70">50% completed</span>
-            </div>
-          </div>
-        </div>
+  return (
+    <div className="mx-auto flex max-w-[860px] items-start justify-center gap-4">
+      <DemoShell className="demo-shell-static w-[420px] shrink-0">
+        <TaskPanelContent locale={locale} onDuplicate={() => setIsSecondaryVisible((value) => !value)} />
       </DemoShell>
+      <div className={`task-secondary-panel w-[420px] shrink-0 ${isSecondaryVisible ? "is-visible" : ""}`}>
+        <TaskPanelContent locale={locale} variant="secondary" />
+      </div>
     </div>
   )
 }

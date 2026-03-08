@@ -423,6 +423,19 @@
   text-decoration-thickness: 1px;
 }
 
+.task-secondary-panel {
+  opacity: 0;
+  transform: translateX(-24px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.task-secondary-panel.is-visible {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .demo-shell[data-active="true"] {
     animation: none;
@@ -453,6 +466,12 @@
     transform: none !important;
     opacity: 1 !important;
     clip-path: none !important;
+  }
+
+  .task-secondary-panel,
+  .task-secondary-panel.is-visible {
+    transition: none !important;
+    transform: none !important;
   }
 }
 
