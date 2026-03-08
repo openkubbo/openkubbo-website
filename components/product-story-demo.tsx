@@ -447,7 +447,7 @@ function RepoHeroPanel() {
 
 export function HeroProductDemo({ locale }: { locale: "pt" | "en" }) {
   return (
-    <DemoShell forceActive className="mt-16 w-full max-w-6xl">
+    <DemoShell forceActive className="demo-shell-static mt-16 w-full max-w-6xl">
       <RepoHeroPanel />
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
         <span className="rounded-full border border-border/60 bg-card/40 px-3 py-1">
