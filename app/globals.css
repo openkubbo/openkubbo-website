@@ -228,15 +228,35 @@
 }
 
 @keyframes taskPanelReveal {
-  0%, 70% {
+  0%, 8% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-20px) scale(0.985);
+    filter: blur(6px);
+  }
+  8.01% {
+    opacity: 0;
+    visibility: visible;
+    transform: translateX(-20px) scale(0.985);
+    filter: blur(6px);
+  }
+  15%, 85% {
     opacity: 1;
     visibility: visible;
     transform: translateX(0) scale(1);
+    filter: blur(0);
   }
-  70.01%, 100% {
+  92% {
+    opacity: 0;
+    visibility: visible;
+    transform: translateX(16px) scale(0.992);
+    filter: blur(4px);
+  }
+  92.01%, 100% {
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-24px) scale(0.98);
+    transform: translateX(16px) scale(0.992);
+    filter: blur(4px);
   }
 }
 
@@ -464,7 +484,8 @@
 }
 
 .task-secondary-panel-auto {
-  animation: taskPanelReveal 10s linear infinite;
+  will-change: opacity, transform, filter;
+  animation: taskPanelReveal 10s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
