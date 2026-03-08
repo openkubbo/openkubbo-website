@@ -222,37 +222,37 @@
 }
 
 @keyframes taskDuplicatePress {
-  0%, 56% { transform: scale(1); background: rgba(255,255,255,0.06); }
-  60% { transform: scale(0.9); background: rgba(43,216,127,0.18); }
-  66%, 100% { transform: scale(1); background: rgba(255,255,255,0.06); }
+  0%, 58% { transform: scale(1); background: rgba(255,255,255,0.06); }
+  62% { transform: scale(0.9); background: rgba(43,216,127,0.18); }
+  68%, 100% { transform: scale(1); background: rgba(255,255,255,0.06); }
 }
 
 @keyframes taskPanelReveal {
-  0%, 8% {
+  0%, 62% {
     opacity: 0;
     visibility: hidden;
     transform: translateX(-20px) scale(0.985);
     filter: blur(6px);
   }
-  8.01% {
+  62.01% {
     opacity: 0;
     visibility: visible;
     transform: translateX(-20px) scale(0.985);
     filter: blur(6px);
   }
-  15%, 85% {
+  74%, 88% {
     opacity: 1;
     visibility: visible;
     transform: translateX(0) scale(1);
     filter: blur(0);
   }
-  92% {
+  96% {
     opacity: 0;
     visibility: visible;
     transform: translateX(16px) scale(0.992);
     filter: blur(4px);
   }
-  92.01%, 100% {
+  96.01%, 100% {
     opacity: 0;
     visibility: hidden;
     transform: translateX(16px) scale(0.992);
@@ -318,29 +318,7 @@
 .demo-shell[data-active="true"] .task-demo-footer-empty,
 .demo-shell[data-active="true"] .task-demo-footer-filled,
 .demo-shell[data-active="true"] .task-duplicate-trigger,
-.demo-shell[data-active="true"] + .task-secondary-panel .task-secondary-panel-auto,
-.repo-demo-panel,
-.repo-demo-row,
-.repo-demo-action,
-.repo-demo-divider,
-.repo-demo-detail,
-.repo-demo-block,
-.repo-terminal,
-.repo-worktree,
-.repo-branch-badge,
-.repo-metric-bar,
-.repo-demo-heat,
-.ci-demo-pending,
-.ci-demo-success,
-.ci-demo-bar,
-.task-demo-row,
-.task-demo-empty,
-.task-demo-check,
-.task-demo-done-label,
-.task-demo-footer-empty,
-.task-demo-footer-filled,
-.task-duplicate-trigger,
-.task-secondary-panel-auto {
+.demo-shell[data-active="true"] .task-secondary-panel-auto {
   animation-play-state: running;
 }
 
@@ -480,6 +458,8 @@
 }
 
 .task-duplicate-trigger {
+  animation-duration: 10s;
+  animation-timing-function: linear;
   animation-name: taskDuplicatePress;
 }
 

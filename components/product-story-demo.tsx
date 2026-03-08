@@ -52,16 +52,25 @@ type DemoShellProps = {
   title?: string
   description?: string
   className?: string
+  forceActive?: boolean
   children: ReactNode
 }
 
-function DemoShell({ eyebrow, title, description, className = "", children }: DemoShellProps) {
+function DemoShell({
+  eyebrow,
+  title,
+  description,
+  className = "",
+  forceActive = false,
+  children,
+}: DemoShellProps) {
   const { ref, isActive } = useDemoActive()
+  const active = forceActive || isActive
 
   return (
     <div
-      ref={ref}
-      data-active={isActive}
+      ref={forceActive ? undefined : ref}
+      data-active={active}
       className={`demo-shell group relative ${className}`}
     >
       {(eyebrow || title || description) && (
@@ -151,7 +160,11 @@ function TaskPanelContent({
 
       <div className="mb-4 flex items-center justify-between rounded-[18px] border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-white/50">
         <span>{locale === "pt" ? "New simple task..." : "New simple task..."}</span>
-        <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-white/8 bg-white/[0.02]">
+        <span
+          className={`flex h-8 w-8 items-center justify-center rounded-2xl border border-white/8 bg-white/[0.02] ${
+            isPrimary ? "task-add-trigger" : ""
+          }`}
+        >
           <Plus className="h-4 w-4 text-white/25" />
         </span>
       </div>
@@ -434,7 +447,7 @@ function RepoHeroPanel() {
 
 export function HeroProductDemo({ locale }: { locale: "pt" | "en" }) {
   return (
-    <div className="mt-16 w-full max-w-6xl">
+    <DemoShell forceActive className="mt-16 w-full max-w-6xl">
       <RepoHeroPanel />
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
         <span className="rounded-full border border-border/60 bg-card/40 px-3 py-1">
@@ -447,20 +460,22 @@ export function HeroProductDemo({ locale }: { locale: "pt" | "en" }) {
           {locale === "pt" ? "Sem motion decorativo" : "No decorative motion"}
         </span>
       </div>
-    </div>
+    </DemoShell>
   )
 }
 
 export function FeatureFlowDemos({ locale }: { locale: "pt" | "en" }) {
   return (
-    <div className="mx-auto flex max-w-[860px] items-start justify-center gap-4">
-      <DemoShell className="demo-shell-static w-[420px] shrink-0">
-        <TaskPanelContent locale={locale} />
-      </DemoShell>
-      <div className="task-secondary-panel task-secondary-panel-auto w-[420px] shrink-0">
-        <TaskPanelContent locale={locale} variant="secondary" />
+    <DemoShell className="demo-shell-static mx-auto max-w-[860px]">
+      <div className="flex items-start justify-center gap-4">
+        <div className="w-[420px] shrink-0">
+          <TaskPanelContent locale={locale} />
+        </div>
+        <div className="task-secondary-panel task-secondary-panel-auto w-[420px] shrink-0">
+          <TaskPanelContent locale={locale} variant="secondary" />
+        </div>
       </div>
-    </div>
+    </DemoShell>
   )
 }
 
